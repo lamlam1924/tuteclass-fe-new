@@ -6,7 +6,6 @@ import { AnimatePresence, motion } from "framer-motion";
 
 import {
   ArrowRight,
-  Book as BookOpen,
   Calendar,
   ChatBubble as MessageCircle,
   ClipboardCheck,
@@ -19,28 +18,53 @@ import {
   UserSquare as Users,
 } from "iconoir-react";
 
-import img1 from "./assets/img1.png";
-import img2 from "./assets/img2.png";
-import img3 from "./assets/img3.png";
-import img4 from "./assets/img4.png";
-import img5 from "./assets/img5.png";
-import img6 from "./assets/img6.png";
-import img7 from "./assets/img7.png";
-import img8 from "./assets/img8.png";
-import img9 from "./assets/img9.png";
-import img10 from "./assets/img10.png";
-import img11 from "./assets/img11.png";
-import img12 from "./assets/img12.png";
-import img13 from "./assets/img13.png";
-import pre1 from "./assets/pre1.png";
-import pre2 from "./assets/pre2.png";
-import pre3 from "./assets/pre3.png";
-import pre4 from "./assets/pre4.png";
-import featureAssignment from "./assets/tuteclass_feature_svgs_v2/feature-assignment.svg";
-import featureClass from "./assets/tuteclass_feature_svgs_v2/feature-class.svg";
-import featureGrading from "./assets/tuteclass_feature_svgs_v2/feature-grading.svg";
-import featureProgress from "./assets/tuteclass_feature_svgs_v2/feature-progress.svg";
-import featureChat from "./assets/tuteclass_feature_svgs_v2/feature-chat.svg";
+const BookOpen = ({ className = "" }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+    <path
+      d="M12 6.5C10.45 5.45 8.45 4.8 6.25 4.8H4.7c-.9 0-1.7.75-1.7 1.7v11.65c0 .55.45.95 1 .9l1.35-.1c2.45-.2 4.8.3 6.65 1.65V6.5Z"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M12 6.5c1.55-1.05 3.55-1.7 5.75-1.7h1.55c.9 0 1.7.75 1.7 1.7v11.65c0 .55-.45.95-1 .9l-1.35-.1c-2.45-.2-4.8.3-6.65 1.65V6.5Z"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M7 8.7c1.15.1 2.2.4 3.05.9M17 8.7c-1.15.1-2.2.4-3.05.9M7 12.1c1.15.1 2.2.4 3.05.9M17 12.1c-1.15.1-2.2.4-3.05.9"
+      stroke="currentColor"
+      strokeWidth="1.45"
+      strokeLinecap="round"
+    />
+  </svg>
+);
+
+import img1 from "./assets/sticker/img1.png";
+import img2 from "./assets/sticker/img2.png";
+import img3 from "./assets/sticker/img3.png";
+import img4 from "./assets/sticker/img4.png";
+import img5 from "./assets/sticker/img5.png";
+import img6 from "./assets/sticker/img6.png";
+import img7 from "./assets/sticker/img7.png";
+import img8 from "./assets/sticker/img8.png";
+import img9 from "./assets/sticker/img9.png";
+import img10 from "./assets/sticker/img10.png";
+import img11 from "./assets/sticker/img11.png";
+import img12 from "./assets/sticker/img12.png";
+import img13 from "./assets/sticker/img13.png";
+import pre1 from "./assets/preview/pre1.png";
+import pre2 from "./assets/preview/pre2.png";
+import pre3 from "./assets/preview/pre3.png";
+import pre4 from "./assets/preview/pre4.png";
+import featureAssignment from "./assets/card-feature/feature-assignment.svg";
+import featureClass from "./assets/card-feature/feature-class.svg";
+import featureGrading from "./assets/card-feature/feature-grading.svg";
+import featureProgress from "./assets/card-feature/feature-progress.svg";
+import featureChat from "./assets/card-feature/feature-chat.svg";
+import openBookSparkle from "./assets/orbit-core.png";
+import logoRmbg from "./assets/logo-rmbg.png";
 
 const ASSETS = {
   img1,
@@ -205,14 +229,26 @@ export default function TuteClassHomePage() {
     return () => clearInterval(timer);
   }, [previewSlides.length]);
 
+  const orbitRadiusX = 295;
+  const orbitRadiusY = 205;
   const orbitIcons = [
-    [Calendar, "top-[48px] left-[44%]", "#ff5c00", "Lịch học", "Quản lý lịch học"],
-    [BarChart3, "top-[175px] right-[30px]", "#8b5cf6", "Tiến độ", "Theo dõi kết quả"],
-    [Users, "bottom-[55px] right-[125px]", "#2f7cff", "Lớp học", "Quản lý học sinh"],
-    [MessageCircle, "bottom-[58px] left-[110px]", "#20a66a", "Trao đổi", "Kết nối tức thì"],
-    [ClipboardCheck, "top-[250px] left-[25px]", "#f59e0b", "Bài tập", "Tạo và giao bài"],
-    [ShieldCheck, "top-[130px] left-[120px]", "#ec4899", "Chấm bài", "Nhận xét rõ ràng"],
-  ];
+    [Calendar, -90, "#ff5c00", "Lịch học", "Quản lý lịch học"],
+    [BarChart3, -30, "#8b5cf6", "Tiến độ", "Theo dõi kết quả"],
+    [Users, 30, "#2f7cff", "Lớp học", "Quản lý học sinh"],
+    [MessageCircle, 90, "#20a66a", "Trao đổi", "Kết nối tức thì"],
+    [ClipboardCheck, 150, "#f59e0b", "Bài tập", "Tạo và giao bài"],
+    [ShieldCheck, 210, "#ec4899", "Chấm bài", "Nhận xét rõ ràng"],
+  ].map(([Icon, angle, color, label, caption]) => {
+    const radians = (angle * Math.PI) / 180;
+    return {
+      Icon,
+      color,
+      label,
+      caption,
+      x: Math.cos(radians) * orbitRadiusX,
+      y: Math.sin(radians) * orbitRadiusY,
+    };
+  });
 
   return (
     <main className="min-h-screen overflow-hidden bg-[#fffaf1] text-[#082d66]">
@@ -245,6 +281,24 @@ export default function TuteClassHomePage() {
           0%,100% { opacity: .35; filter: drop-shadow(0 0 0 rgba(255,92,0,0)); }
           50% { opacity: .9; filter: drop-shadow(0 0 16px rgba(255,92,0,.55)); }
         }
+        @keyframes coreSparkle {
+          0%,100% { opacity: .18; transform: scale(.55) rotate(0deg); filter: drop-shadow(0 0 0 rgba(255,194,102,0)); }
+          45% { opacity: 1; transform: scale(1.2) rotate(16deg); filter: drop-shadow(0 0 14px rgba(255,194,102,.85)); }
+          72% { opacity: .55; transform: scale(.86) rotate(-10deg); filter: drop-shadow(0 0 8px rgba(255,255,255,.75)); }
+        }
+        @keyframes coreSparkleHover {
+          0%,100% { opacity: .55; transform: scale(.85) rotate(0deg); filter: drop-shadow(0 0 10px rgba(255,194,102,.7)); }
+          45% { opacity: 1; transform: scale(1.45) rotate(18deg); filter: drop-shadow(0 0 22px rgba(255,194,102,1)); }
+          72% { opacity: .8; transform: scale(1.05) rotate(-10deg); filter: drop-shadow(0 0 16px rgba(255,255,255,.9)); }
+        }
+        @keyframes coreGlowSweep {
+          0%,100% { opacity: .2; transform: translate(-50%, -50%) scale(.85); }
+          50% { opacity: .65; transform: translate(-50%, -50%) scale(1.06); }
+        }
+        @keyframes bookSpineGlow {
+          0%,100% { opacity: .32; transform: translate(-50%, -50%) scale(.82); filter: blur(13px); }
+          50% { opacity: .88; transform: translate(-50%, -50%) scale(1.08); filter: blur(18px); }
+        }
         @keyframes nodePulse {
           0%,100% { transform: scale(1); box-shadow: 0 18px 44px rgba(15,47,102,.08); }
           50% { transform: scale(1.08); box-shadow: 0 24px 70px rgba(255,92,0,.22); }
@@ -256,6 +310,10 @@ export default function TuteClassHomePage() {
         .orbit-node { animation: nodePulse 4.8s ease-in-out infinite; }
         .planet-ring { animation: orbitSpin 8s linear infinite; }
         .planet-status { animation: glowPulse 2.2s ease-in-out infinite; }
+        .orbit-core-glow { animation: coreGlowSweep 3.4s ease-in-out infinite; }
+        .orbit-core-sparkle { animation: coreSparkle 2.4s ease-in-out infinite; }
+        .group\\/core:hover .orbit-core-sparkle { animation-name: coreSparkleHover; }
+        .book-spine-glow { animation: bookSpineGlow 2.6s ease-in-out infinite; }
 
 
         @keyframes bounceRise {
@@ -335,7 +393,7 @@ export default function TuteClassHomePage() {
           {pageSections.map((section, index) => {
             const active = activeSection === section.id;
             return (
-              <button key={section.id} type="button" onClick={() => { setActiveSection(section.id); document.getElementById(section.id)?.scrollIntoView({ behavior: "smooth", block: "start" }); }} className={`group/item flex origin-right items-center justify-end gap-3 transition-transform duration-200 ease-out ${active ? "hover:scale-110" : "hover:scale-[1.03]"}`}>
+              <button key={section.id} type="button" onClick={() => { setActiveSection(section.id); document.getElementById(section.id)?.scrollIntoView({ behavior: "smooth", block: "start" }); }} className={`group/item flex origin-right cursor-pointer items-center justify-end gap-3 transition-transform duration-200 ease-out ${active ? "hover:scale-110" : "hover:scale-[1.03]"}`}>
                 <span className={`pointer-events-none translate-x-2 whitespace-nowrap rounded-full bg-transparent px-3 py-1.5 text-xs font-black text-[#0b2f66] opacity-0 transition-all duration-500 ease-out group-hover/item:translate-x-0 group-hover/item:bg-white/60 group-hover/item:opacity-100 group-hover/item:shadow-[0_10px_32px_rgba(15,47,102,.14)] group-hover/item:backdrop-blur-md ${active ? "text-[#ff5c00]" : ""}`}>
                   {String(index + 1).padStart(2, "0")} · {section.label}
                 </span>
@@ -359,25 +417,16 @@ export default function TuteClassHomePage() {
         />
 
         {/* Header */}
-        <header className="relative z-20 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="grid h-11 w-11 place-items-center rounded-xl bg-[#082d66] shadow-[0_10px_26px_rgba(8,45,102,.16)]">
-              <BookOpen className="h-7 w-7 text-white" />
-            </div>
-
-            <div>
-              <div className="text-2xl font-black leading-none">TuteClass</div>
-              <div className="mt-1 text-sm font-bold italic text-[#ff5c00]">
-                Teacher Studio
-              </div>
-            </div>
+        <header className="relative z-20 grid grid-cols-[auto_1fr_auto] items-center gap-8">
+          <div className="flex translate-x-4 items-center gap-3">
+            <img src={logoRmbg} alt="TuteClass" className="h-10 w-auto object-contain" />
           </div>
 
-          <nav className="hidden items-center gap-10 text-sm font-bold lg:flex">
+          <nav className="hidden items-center justify-center gap-8 text-sm font-bold lg:flex">
             {navItems.map(([Icon, label]) => (
               <button
                 key={label}
-                className="flex items-center gap-2 transition hover:text-[#ff5c00]"
+                className="flex cursor-pointer items-center gap-2 transition hover:text-[#ff5c00]"
               >
                 <Icon className="h-5 w-5" />
                 {label}
@@ -386,7 +435,7 @@ export default function TuteClassHomePage() {
           </nav>
 
           <div className="flex items-center gap-5">
-            <button className="hidden rounded-xl border border-[#0b2f66]/15 bg-[#0b2f66] px-6 py-3 text-sm font-black text-white shadow-[0_12px_28px_rgba(11,47,102,.2)] transition hover:-translate-y-0.5 hover:bg-[#ff5c00] hover:shadow-[0_16px_32px_rgba(255,92,0,.24)] md:block">
+            <button className="hidden cursor-pointer rounded-xl border border-[#0b2f66]/15 bg-[#0b2f66] px-6 py-3 text-sm font-black text-white shadow-[0_12px_28px_rgba(11,47,102,.2)] transition hover:-translate-y-0.5 hover:bg-[#ff5c00] hover:shadow-[0_16px_32px_rgba(255,92,0,.24)] md:block">
               Đăng nhập
             </button>
           </div>
@@ -394,10 +443,10 @@ export default function TuteClassHomePage() {
 
         {/* Hero content */}
         <div className="relative z-10 grid min-h-[650px] grid-cols-1 items-center gap-12 lg:grid-cols-[0.9fr_1.1fr]">
-          <section>
+          <section className="relative">
             <div>
               <div className="mb-5 flex items-center gap-4">
-                <div className="inline-flex items-center gap-2 rounded-full border border-[#ffd9b8] bg-white/70 px-4 py-2 text-xs font-bold text-[#ff5c00]">
+                <div className="inline-flex items-center gap-2 rounded-full border border-[#ffe1b8] bg-[#fff7ea]/75 px-4 py-2 text-xs font-bold text-[#a94d00]">
                   ✦ Dành riêng cho giáo viên dạy thêm
                 </div>
 
@@ -408,10 +457,10 @@ export default function TuteClassHomePage() {
                 />
               </div>
 
-              <h1 className="max-w-[620px] text-5xl font-black leading-[1.08] tracking-[-0.04em] md:text-6xl">
-                Dạy dễ dàng.
+              <h1 className="relative max-w-[620px] text-5xl font-black leading-[1.08] tracking-[-0.04em] md:text-6xl">
+                <span className="text-[#082d66]">Dạy dễ dàng.</span>
                 <br />
-                <span className="text-[#ff5c00]">Quản lý thông minh.</span>
+                <span className="bg-[linear-gradient(90deg,#ff5c00_0%,#f6a23a_100%)] bg-clip-text text-transparent">Quản lý thông minh.</span>
               </h1>
             </div>
 
@@ -420,7 +469,7 @@ export default function TuteClassHomePage() {
             </p>
 
             <div className="mt-9 flex items-center gap-4">
-              <button className="flex items-center gap-3 rounded-2xl bg-[#ff5c00] px-7 py-4 text-base font-black text-white shadow-[0_18px_36px_rgba(255,92,0,.25)]">
+              <button className="flex cursor-pointer items-center gap-3 rounded-2xl bg-[#ff5c00] px-7 py-4 text-base font-black text-white shadow-[0_18px_36px_rgba(255,92,0,.25)] transition hover:-translate-y-0.5 hover:bg-[#0b2f66] hover:shadow-[0_20px_40px_rgba(11,47,102,.24)]">
                 Bắt đầu miễn phí
                 <ArrowRight className="h-5 w-5" />
               </button>
@@ -428,17 +477,17 @@ export default function TuteClassHomePage() {
 
             <div className="mt-9 flex flex-wrap gap-8 text-sm font-bold text-[#385178]">
               <span className="flex items-center gap-2">
-                <ShieldCheck className="h-4 w-4 text-[#ff5c00]" />
+                <ShieldCheck className="h-4 w-4 text-[#0b2f66]" />
                 Miễn phí 14 ngày
               </span>
 
               <span className="flex items-center gap-2">
-                <CreditCard className="h-4 w-4 text-[#ff5c00]" />
+                <CreditCard className="h-4 w-4 text-[#0b2f66]" />
                 Không cần thẻ tín dụng
               </span>
 
               <span className="flex items-center gap-2">
-                <Headphones className="h-4 w-4 text-[#ff5c00]" />
+                <Headphones className="h-4 w-4 text-[#0b2f66]" />
                 Hỗ trợ mọi lúc
               </span>
             </div>
@@ -452,39 +501,66 @@ export default function TuteClassHomePage() {
 
           {/* Orbit hero */}
           <section className="relative flex min-h-[560px] items-center justify-center">
+            <div className="pointer-events-none absolute h-[520px] w-[520px] rounded-full bg-[radial-gradient(circle,rgba(255,177,95,.28)_0%,rgba(255,250,241,.12)_48%,rgba(255,250,241,0)_72%)] blur-sm" />
+            <div className="pointer-events-none absolute h-[390px] w-[390px] rounded-full border border-[#ffb15f]/20 bg-white/20" />
             <svg
               className="pointer-events-none absolute h-[600px] w-[680px] max-w-full overflow-visible"
               viewBox="0 0 680 600"
               fill="none"
             >
               <g className="orbit-layer-slow">
-                <ellipse cx="340" cy="300" rx="280" ry="150" stroke="#ff8a3d" strokeWidth="1.4" opacity="0.55" />
-                <ellipse cx="340" cy="300" rx="235" ry="210" stroke="#0b2f66" strokeWidth="1.1" opacity="0.22" />
-                <path className="orbit-dash" d="M90 304 C170 88 500 70 610 285 C500 512 170 510 90 304Z" stroke="#ff5c00" strokeWidth="1.3" opacity="0.52" />
-                <circle className="orbit-glow-dot" cx="610" cy="285" r="7" fill="#ff5c00" />
-                <circle className="orbit-glow-dot" cx="178" cy="112" r="5" fill="#0b2f66" />
-                <circle className="orbit-glow-dot" cx="335" cy="90" r="4" fill="#ffb15f" />
+                <circle cx="340" cy="300" r="245" stroke="#ff8a3d" strokeWidth="1.4" opacity="0.52" />
+                <circle className="orbit-dash" cx="340" cy="300" r="245" stroke="#ff5c00" strokeWidth="1.3" opacity="0.46" />
+                <ellipse cx="340" cy="300" rx="245" ry="150" stroke="#0b2f66" strokeWidth="1.1" opacity="0.24" />
+                <circle className="orbit-glow-dot" cx="585" cy="300" r="7" fill="#ff5c00" />
+                <circle className="orbit-glow-dot" cx="340" cy="55" r="5" fill="#0b2f66" />
+                <circle className="orbit-glow-dot" cx="128" cy="423" r="4" fill="#ffb15f" />
               </g>
               <g className="orbit-layer-fast">
-                <path className="orbit-dash" d="M142 410 C250 520 455 505 548 352 C630 215 430 132 290 168 C150 205 75 305 142 410Z" stroke="#0b2f66" strokeWidth="1.1" opacity="0.28" />
-                <circle className="orbit-glow-dot" cx="142" cy="410" r="5" fill="#ff5c00" />
-                <circle className="orbit-glow-dot" cx="548" cy="352" r="6" fill="#0b2f66" />
+                <ellipse className="orbit-dash" cx="340" cy="300" rx="150" ry="245" stroke="#0b2f66" strokeWidth="1.1" opacity="0.3" />
+                <circle className="orbit-glow-dot" cx="340" cy="545" r="5" fill="#ff5c00" />
+                <circle className="orbit-glow-dot" cx="552" cy="178" r="6" fill="#0b2f66" />
               </g>
             </svg>
 
-            <motion.div className="relative z-10 grid h-[230px] w-[230px] place-items-center rounded-[48px] border border-[#f3dfc1] bg-white/80 shadow-[0_30px_90px_rgba(15,47,102,.13)] backdrop-blur-xl" animate={{ y: [0, -12, 0], rotate: [-1.5, 1.5, -1.5] }} transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut" }}>
-              <div className="absolute inset-[-18px] rounded-[60px] bg-[#ff5c00]/10 blur-2xl" />
-              <div className="relative grid h-[155px] w-[155px] place-items-center rounded-[36px] bg-[#fff4e8] shadow-inner">
-                <div className="grid h-24 w-24 place-items-center rounded-3xl bg-[#082d66]">
-                  <BookOpen className="h-14 w-14 text-white" />
-                </div>
+            <motion.div className="relative z-10 grid h-[230px] w-[230px] place-items-center">
+              <div className="group/core relative grid h-[310px] w-[310px] -translate-x-[28px] -translate-y-[29px] cursor-pointer place-items-center">
+                <span className="orbit-core-glow pointer-events-none absolute left-1/2 top-1/2 h-[230px] w-[230px] rounded-full bg-[#ffd27a]/25 blur-2xl transition-all duration-500 group-hover/core:h-[260px] group-hover/core:w-[260px] group-hover/core:bg-[#ffd27a]/40" />
+                {[
+                  ["left-[48px] top-[46px] h-10 w-10", "0s"],
+                  ["right-[40px] top-[70px] h-8 w-8", ".35s"],
+                  ["right-[28px] top-[142px] h-7 w-7", ".75s"],
+                  ["bottom-[64px] right-[82px] h-4 w-4", "1.1s"],
+                  ["bottom-[82px] left-[54px] h-3.5 w-3.5", "1.45s"],
+                  ["left-[82px] top-[24px] h-5 w-5", "1.8s"],
+                ].map(([className, delay], index) => (
+                  <span
+                    key={index}
+                    className={`orbit-core-sparkle pointer-events-none absolute ${className}`}
+                    style={{ animationDelay: delay }}
+                  >
+                    <svg viewBox="0 0 24 24" className="h-full w-full fill-[#ffd27a]">
+                      <path d="M12 1.8L14.8 9.2L22.2 12L14.8 14.8L12 22.2L9.2 14.8L1.8 12L9.2 9.2L12 1.8Z" />
+                    </svg>
+                  </span>
+                ))}
+                <span className="book-spine-glow pointer-events-none absolute left-[50%] top-[50%] h-[260px] w-[260px] rounded-full bg-[radial-gradient(circle,rgba(255,255,255,.6)_0%,rgba(255,226,155,.46)_32%,rgba(255,151,44,.24)_58%,rgba(255,151,44,0)_76%)] mix-blend-screen transition-all duration-500 group-hover/core:h-[292px] group-hover/core:w-[292px] group-hover/core:bg-[radial-gradient(circle,rgba(255,255,255,.78)_0%,rgba(255,226,155,.62)_34%,rgba(255,151,44,.36)_62%,rgba(255,151,44,0)_80%)]" />
+                <img src={openBookSparkle} alt="" className="relative h-[310px] w-[310px] object-contain drop-shadow-[0_18px_38px_rgba(255,151,44,.18)]" />
               </div>
             </motion.div>
 
-            {orbitIcons.map(([Icon, pos, color, label, caption], i) => (
-              <motion.div key={label} className={`absolute ${pos}`} whileHover={{ scale: 1.06, y: -4 }}>
+            {orbitIcons.map(({ Icon, x, y, color, label, caption }, i) => (
+              <div
+                key={label}
+                className="absolute -translate-x-1/2 -translate-y-1/2"
+                style={{
+                  left: `calc(50% + ${x}px)`,
+                  top: `calc(50% + ${y}px)`,
+                }}
+              >
+                <motion.div whileHover={{ scale: 1.06, y: -4 }}>
                 <motion.div
-                  className="group orbit-node relative flex h-[104px] w-[104px] flex-col items-center justify-center rounded-[30px] border border-white/80 bg-white/80 shadow-[0_22px_70px_rgba(15,47,102,.13)] backdrop-blur-xl"
+                  className="group orbit-node relative flex h-[104px] w-[104px] cursor-pointer flex-col items-center justify-center rounded-[30px] border border-white/80 bg-white/80 shadow-[0_22px_70px_rgba(15,47,102,.13)] backdrop-blur-xl"
                   style={{ animationDelay: `${i * 0.4}s` }}
                 >
                   <div className="absolute inset-[-10px] rounded-[36px] opacity-40 blur-2xl transition group-hover:opacity-70" style={{ backgroundColor: color }} />
@@ -498,15 +574,13 @@ export default function TuteClassHomePage() {
                   <div className="relative mt-2 text-[11px] font-black text-[#0b2f66]">{label}</div>
                   <div className="pointer-events-none absolute top-[108px] whitespace-nowrap rounded-full border border-[#ead6b8] bg-white/90 px-3 py-1.5 text-[11px] font-black text-[#385178] opacity-0 shadow-lg transition-all group-hover:translate-y-1 group-hover:opacity-100">{caption}</div>
                 </motion.div>
-              </motion.div>
+                </motion.div>
+              </div>
             ))}
 
-            <motion.div
-              className="pointer-events-none absolute right-[72px] top-[205px] h-3 w-3 rounded-full bg-[#ff5c00] shadow-[0_0_24px_rgba(255,92,0,.8)]"
-              animate={{ offsetDistance: ["0%", "100%"], opacity: [0, 1, 1, 0] }}
-              transition={{ duration: 5.5, repeat: Infinity, ease: "linear" }}
-              style={{ offsetPath: "path('M0 0 C -120 -110 -410 -115 -520 40 C -610 170 -470 310 -250 280 C -80 255 35 130 0 0')" }}
-            />
+            <motion.div className="pointer-events-none absolute inset-0 m-auto h-[490px] w-[490px] rounded-full" animate={{ rotate: 360 }} transition={{ duration: 5.5, repeat: Infinity, ease: "linear" }}>
+              <div className="absolute left-1/2 top-0 h-3 w-3 -translate-x-1/2 rounded-full bg-[#ff5c00] shadow-[0_0_24px_rgba(255,92,0,.8)]" />
+            </motion.div>
           </section>
         </div>
       </section>
@@ -614,7 +688,7 @@ export default function TuteClassHomePage() {
                     <button
                       key={slide.label}
                       onClick={() => setActiveSlide(index)}
-                      className={`h-2 rounded-full transition-all ${
+                      className={`h-2 cursor-pointer rounded-full transition-all ${
                         activeSlide === index
                           ? "w-8 bg-[#0b2f66]"
                           : "w-2 bg-[#d8c8b2]"
@@ -681,7 +755,7 @@ export default function TuteClassHomePage() {
           />
           <button
             type="submit"
-            className="rounded-2xl bg-[#ff5c00] px-7 py-3.5 text-sm font-black text-white shadow-[0_14px_30px_rgba(255,92,0,.25)] transition hover:-translate-y-0.5 hover:bg-[#e65300]"
+            className="cursor-pointer rounded-2xl bg-[#ff5c00] px-7 py-3.5 text-sm font-black text-white shadow-[0_14px_30px_rgba(255,92,0,.25)] transition hover:-translate-y-0.5 hover:bg-[#e65300]"
           >
             Đăng ký ngay →
           </button>
