@@ -13,7 +13,6 @@ import {
   CreditCard,
   Headset as Headphones,
   Page as FileText,
-  PlaySolid as Play,
   StatsReport as BarChart3,
   UserSquare as Users,
 } from "iconoir-react";
