@@ -250,7 +250,7 @@ export default function TuteClassHomePage() {
   });
 
   return (
-    <main className="min-h-screen overflow-hidden bg-[#fffaf1] text-[#082d66]">
+    <main className="min-h-screen overflow-x-hidden bg-[#fffaf1] text-[#082d66]">
       <style>{`
         html { scroll-behavior: smooth; }
         @keyframes floatSoft {
@@ -404,7 +404,8 @@ export default function TuteClassHomePage() {
       </nav>
 
       {/* HERO */}
-      <section id="hero" className="relative mx-auto min-h-[760px] max-w-[1500px] scroll-mt-4 px-10 pt-8">
+      <section id="hero"
+                className="relative mx-auto min-h-screen max-w-[1500px] scroll-mt-4 px-4 pt-5 sm:px-6 lg:min-h-[760px] lg:px-10 lg:pt-8">
         {/* Background decor */}
         <img
           src={ASSETS.img3}
@@ -416,9 +417,9 @@ export default function TuteClassHomePage() {
         />
 
         {/* Header */}
-        <header className="relative z-20 grid grid-cols-[auto_1fr_auto] items-center gap-8">
+        <header className="relative z-20 flex items-center justify-between gap-4">
           <div className="flex translate-x-4 items-center gap-3">
-            <img src={logoRmbg} alt="TuteClass" className="h-10 w-auto object-contain" />
+            <img src={logoRmbg} alt="TuteClass" className="h-8 w-auto object-contain sm:h-10" />
           </div>
 
           <nav className="hidden items-center justify-center gap-8 text-sm font-bold lg:flex">
@@ -441,7 +442,7 @@ export default function TuteClassHomePage() {
         </header>
 
         {/* Hero content */}
-        <div className="relative z-10 grid min-h-[650px] grid-cols-1 items-center gap-12 lg:grid-cols-[0.9fr_1.1fr]">
+        <div className="relative z-10 grid min-h-[auto] grid-cols-1 items-center gap-10 py-10 lg:min-h-[650px] lg:grid-cols-[0.9fr_1.1fr] lg:py-0">
           <section className="relative">
             <div>
               <div className="mb-5 flex items-center gap-4">
@@ -456,7 +457,7 @@ export default function TuteClassHomePage() {
                 />
               </div>
 
-              <h1 className="relative max-w-[620px] text-5xl font-black leading-[1.08] tracking-[-0.04em] md:text-6xl">
+              <h1 className="relative max-w-[620px] text-[42px] font-black leading-[1.08] tracking-[-0.04em] sm:text-5xl md:text-6xl">
                 <span className="text-[#082d66]">Dạy dễ dàng.</span>
                 <br />
                 <span className="bg-[linear-gradient(90deg,#ff5c00_0%,#f6a23a_100%)] bg-clip-text text-transparent">Quản lý thông minh.</span>
@@ -499,7 +500,7 @@ export default function TuteClassHomePage() {
           </section>
 
           {/* Orbit hero */}
-          <section className="relative flex min-h-[560px] items-center justify-center">
+          <section className="relative flex min-h-[360px] scale-[0.72] items-center justify-center sm:min-h-[460px] sm:scale-90 lg:min-h-[560px] lg:scale-100">
             <div className="pointer-events-none absolute h-[520px] w-[520px] rounded-full bg-[radial-gradient(circle,rgba(255,177,95,.28)_0%,rgba(255,250,241,.12)_48%,rgba(255,250,241,0)_72%)] blur-sm" />
             <div className="pointer-events-none absolute h-[390px] w-[390px] rounded-full border border-[#ffb15f]/20 bg-white/20" />
             <svg
@@ -585,7 +586,7 @@ export default function TuteClassHomePage() {
       </section>
 
       {/* FEATURE SECTION */}
-      <section className="scroll-bounce relative scroll-mt-4 overflow-hidden border-t border-[#f1ddc0] bg-white/45 px-10 py-24">
+      <section className="scroll-bounce relative scroll-mt-4 overflow-hidden border-t border-[#f1ddc0] bg-white/45 px-4 py-16 sm:px-6 lg:px-10 lg:py-24">
         <img src={ASSETS.img10} alt="" className="fade-decor pointer-events-none absolute left-3 top-52 w-40 rotate-[-8deg] opacity-20" />
         <img src={ASSETS.img11} alt="" className="fade-decor pointer-events-none absolute right-3 top-52 w-36 rotate-[8deg] opacity-20" style={{ animationDelay: "1s" }} />
         <img src={ASSETS.img12} alt="" className="fade-decor pointer-events-none absolute bottom-8 left-[5%] w-44 rotate-[6deg] opacity-15" style={{ animationDelay: "2s" }} />
@@ -604,7 +605,7 @@ export default function TuteClassHomePage() {
             Tập trung vào giảng dạy
           </h2>
 
-          <div className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-6">
+          <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-6 lg:mt-14">
             {features.map((feature, index) => (
               <motion.div
                 key={feature.title}
@@ -631,7 +632,7 @@ export default function TuteClassHomePage() {
       </section>
 
       {/* PREVIEW SECTION */}
-      <section className="scroll-bounce relative scroll-mt-4 overflow-hidden px-10 py-24">
+      <section className="scroll-bounce relative scroll-mt-4 overflow-hidden px-4 py-16 sm:px-6 lg:px-10 lg:py-24">
         <img
           src={ASSETS.img5}
           alt=""
@@ -645,7 +646,7 @@ export default function TuteClassHomePage() {
         />
         <div id="preview" 
                 className="relative z-10 mx-auto max-w-[1320px]">
-        <div className="glass relative overflow-hidden rounded-[38px] p-10">
+        <div className="glass relative overflow-hidden rounded-[28px] p-4 sm:p-6 lg:rounded-[38px] lg:p-10">
           {/* Paper plane animation */}
           <img
             src={ASSETS.img7}
@@ -706,7 +707,7 @@ export default function TuteClassHomePage() {
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: -20, scale: 0.98 }}
                   transition={{ duration: 0.45 }}
-                  className="h-[560px] overflow-hidden rounded-[36px] border border-[#ead6b8] bg-white p-2 shadow-[0_24px_80px_rgba(15,47,102,.08)]"
+                  className="h-[260px] overflow-hidden rounded-[24px] border border-[#ead6b8] bg-white p-2 shadow-[0_24px_80px_rgba(15,47,102,.08)] sm:h-[380px] lg:h-[560px] lg:rounded-[36px]"
                 >
                   <img
                     src={previewSlides[activeSlide].image}
@@ -722,7 +723,7 @@ export default function TuteClassHomePage() {
       </section>
 
       {/* CTA */}
-      <section id="cta" className="scroll-bounce relative mx-auto max-w-[1280px] scroll-mt-4 px-10 pb-24 pt-8 text-center">
+      <section id="cta" className="scroll-bounce relative mx-auto max-w-[1280px] scroll-mt-4 px-4 pb-16 pt-8 text-center sm:px-6 lg:px-10 lg:pb-24">
         <img
           src={ASSETS.img4}
           className="pointer-events-none absolute bottom-6 left-0 w-56 opacity-80"
@@ -760,7 +761,7 @@ export default function TuteClassHomePage() {
           </button>
         </form>
 
-        <div className="mt-8 flex justify-center gap-10 text-sm font-bold text-[#385178]">
+        <div className="mt-8 flex flex-col items-center justify-center gap-4 text-sm font-bold text-[#385178] sm:flex-row sm:gap-10">
           <span className="flex items-center gap-2">
             <ShieldCheck className="h-4 w-4 text-[#ff5c00]" />
             Miễn phí 14 ngày
